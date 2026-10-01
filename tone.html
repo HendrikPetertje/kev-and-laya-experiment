@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tone Radar · laya lab</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <h1>Check the tone before you hit send.</h1>
+      <p>Type a reply to a customer or colleague. Laya scores it live on eight signals and draws the shape. The dashed outline is your previous version, so you can see each edit move the needle. Any language works.</p>
+    </section>
+
+    <div class="radar-wrap">
+      <div class="card composer">
+        <textarea id="msg" rows="12" style="min-height:300px" placeholder="Hi, thanks for reaching out…"></textarea>
+        <span class="hint" id="lat">analyses as you type</span>
+      </div>
+      <div class="card">
+        <svg class="radar" id="radar" viewBox="-190 -170 380 340"></svg>
+      </div>
+    </div>
+
+    <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:24px">
+      <div class="card"><h2>Signals</h2><div class="signals" id="signals"></div></div>
+      <div class="card"><h2>Verdict</h2><div id="verdict" class="hint">Start typing to get a read.</div></div>
+    </div>
+  </main>
+
+  <script type="module" src="tone.js"></script>
+</body>
+</html>

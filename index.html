@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task Router · laya lab</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <h1>Who should take this?</h1>
+      <p>Describe the departments or people that can pick up work. Paste a support question or task, hit <kbd>Enter</kbd>, and Laya ranks every target by how well it fits.</p>
+    </section>
+
+    <div class="grid">
+      <aside class="card">
+        <h2>Targets <span class="count" id="count">0</span><span class="spacer"></span>
+          <button class="btn ghost" id="reset" title="Restore example targets">reset</button>
+        </h2>
+        <div class="targets" id="targets"></div>
+        <button class="btn" id="add" style="width:100%">+ Add target</button>
+        <p class="hint" id="warn" style="margin:10px 0 0"></p>
+      </aside>
+
+      <section>
+        <div class="card composer">
+          <textarea id="task" placeholder="Paste a support question or task…" autofocus></textarea>
+          <span class="hint"><kbd>Enter</kbd> to route · <kbd>Shift</kbd>+<kbd>Enter</kbd> newline · blank lines split into multiple tasks</span>
+          <button class="btn primary" id="go">Route →</button>
+        </div>
+        <div class="feed" id="feed">
+          <div class="empty" id="empty"><div class="big">⇢</div>Routed tasks appear here.</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="router.js"></script>
+</body>
+</html>

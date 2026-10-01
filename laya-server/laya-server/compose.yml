@@ -1,0 +1,23 @@
+services:
+  laya:
+    build:
+      context: .
+      args:
+        LAYA_VERSION: ${LAYA_VERSION:-0.3.22}
+    image: localhost/laya:${LAYA_VERSION:-0.3.22}
+    container_name: laya
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${LAYA_HOST_PORT:-8100}:8000"
+    environment:
+      LAYA_DEVICE: cpu
+      LAYA_PRELOAD: ${LAYA_PRELOAD:-1}
+      LAYA_LOG_LEVEL: ${LAYA_LOG_LEVEL:-info}
+      # Optional bearer auth (empty = disabled)
+      LAYA_API_KEY: ${LAYA_API_KEY:-}
+    volumes:
+      # Persist downloaded checkpoints across restarts
+      - laya-hf-cache:/data/hf
+
+volumes:
+  laya-hf-cache:

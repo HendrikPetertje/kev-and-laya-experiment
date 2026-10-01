@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prompt Firewall · laya lab</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <h1>Prompt-injection firewall.</h1>
+      <p>Paste whatever a user (or a web page, or a PDF) is about to feed your LLM. Laya scores it on several attack signals in a single request and decides: allow, review or block. Try to sneak something past it.</p>
+    </section>
+    <div class="split">
+      <div class="side">
+        <div class="card composer">
+          <textarea id="prompt" rows="9" placeholder="Paste a prompt…"></textarea>
+          <span class="hint"><kbd>⌘</kbd>/<kbd>Ctrl</kbd>+<kbd>Enter</kbd> to check</span>
+          <button class="btn primary" id="go">Check →</button>
+        </div>
+        <div class="card"><h2>Samples</h2><div class="samples" id="samples"></div></div>
+      </div>
+      <div class="side">
+        <div class="card"><h2>Verdict</h2><div id="verdict" class="hint">Nothing checked yet.</div></div>
+        <div class="card"><h2>Signals</h2><div id="signals" class="signals hint">–</div></div>
+      </div>
+    </div>
+  </main>
+  <script type="module" src="firewall.js"></script>
+</body>
+</html>

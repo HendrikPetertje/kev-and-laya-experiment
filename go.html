@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laya vs Laya · laya lab</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="go.css" />
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <h1>Laya vs Laya on a 9×9 board.</h1>
+      <p>Laya can't generate moves, only choose between options. So each turn a small rules engine lists the legal moves, keeps the 12 most promising ones (plus "pass") with a short tactical note on each, and Laya picks one. Black plays White until two passes in a row or 160 moves. The game is then scored with Chinese rules and 7.5 komi.</p>
+    </section>
+
+    <div class="go-layout">
+      <div class="card go-board-card">
+        <svg id="board" class="goban" viewBox="0 0 500 500"></svg>
+        <div class="banner" id="banner" hidden></div>
+        <div class="go-controls">
+          <button class="btn primary" id="play">▶ Play</button>
+          <button class="btn" id="reset">↺ Reset</button>
+        </div>
+      </div>
+
+      <aside class="go-side">
+        <div class="card">
+          <h2>Match</h2>
+          <div class="players">
+            <div class="player" id="p1"><span class="stone b"></span><div><b>Black</b><small>Laya</small></div><span class="cap" id="capB">0</span></div>
+            <div class="player" id="p2"><span class="stone w"></span><div><b>White</b><small>Laya · +7.5 komi</small></div><span class="cap" id="capW">0</span></div>
+          </div>
+          <p class="hint" id="status" style="margin:12px 0 0">Press play to start.</p>
+        </div>
+        <div class="card">
+          <h2>Last decision</h2>
+          <div id="thoughts" class="hint">No moves yet.</div>
+        </div>
+        <div class="card">
+          <h2>Moves <span class="count" id="moveCount">0</span></h2>
+          <div id="log" class="movelog"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script type="module" src="go.js"></script>
+</body>
+</html>

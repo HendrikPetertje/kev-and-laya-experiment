@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Triage Board · laya lab</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <h1>Inbox to board in one shot.</h1>
+      <p>Dump up to 50 tickets (one per line, or separated by blank lines). Laya classifies them all in a single batch call: category lanes, urgency ranking, churn risk and sentiment.</p>
+    </section>
+
+    <div class="card composer" style="margin-bottom:24px">
+      <textarea id="inbox" rows="6" placeholder="One ticket per line…"></textarea>
+      <span class="hint"><kbd>⌘</kbd>/<kbd>Ctrl</kbd>+<kbd>Enter</kbd> to triage · <button class="btn ghost" id="sample" style="color:var(--accent-2)">load sample inbox</button></span>
+      <button class="btn primary" id="go">Triage →</button>
+    </div>
+
+    <div class="stats" id="stats" hidden>
+      <div class="stat"><div class="v" id="s-total">0</div><div class="l">tickets</div></div>
+      <div class="stat"><div class="v" id="s-urgent" style="color:var(--bad)">0</div><div class="l">need action today</div></div>
+      <div class="stat"><div class="v" id="s-churn" style="color:var(--warn)">0</div><div class="l">churn risk</div></div>
+      <div class="stat"><div class="v" id="s-mood">–</div><div class="l">avg. sentiment</div></div>
+    </div>
+
+    <div class="kanban" id="board">
+      <div class="empty" style="grid-column:1/-1"><div class="big">▦</div>Your board appears here.</div>
+    </div>
+  </main>
+
+  <script type="module" src="triage.js"></script>
+</body>
+</html>

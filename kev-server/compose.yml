@@ -1,0 +1,23 @@
+services:
+  kev:
+    build:
+      context: .
+      args:
+        KEV_VERSION: ${KEV_VERSION:-1.0.0}
+    image: localhost/kev:${KEV_VERSION:-1.0.0}
+    container_name: kev
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"
+    extra_hosts:
+      - "host.containers.internal:host-gateway"
+    environment:
+      KEV_LOG_LEVEL: ${KEV_LOG_LEVEL:-info}
+      KEV_BACKEND: openai
+      # LM Studio on the macOS host
+      KEV_OPENAI_BASE_URL: ${KEV_OPENAI_BASE_URL:-http://host.containers.internal:1234/v1}
+      KEV_OPENAI_API_KEY: ${KEV_OPENAI_API_KEY:-lm-studio}
+      KEV_OPENAI_MODEL: ${KEV_OPENAI_MODEL:-qwen3.5-2b-mtp}
+      KEV_STRATEGY: ${KEV_STRATEGY:-auto}
+      # Optional auth for the Kev API (empty = disabled)
+      KEV_API_KEY: ${KEV_API_KEY:-}

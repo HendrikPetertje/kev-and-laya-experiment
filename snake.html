@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Snake · laya lab</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <h1>Laya plays Snake.</h1>
+      <p>Every tick, a tiny engine lists the moves that don't crash immediately, notes how close each one gets to the food and how much room it leaves, and Laya picks one with a <code>choice</code> question. One request per step, so you can feel the latency.</p>
+    </section>
+    <div class="split">
+      <div class="card">
+        <svg id="board" class="snake-board"></svg>
+        <div class="row" style="justify-content:center;margin-top:16px">
+          <button class="btn primary" id="play">▶ Play</button>
+          <button class="btn" id="reset">↺ Reset</button>
+        </div>
+      </div>
+      <aside class="side">
+        <div class="stats" style="grid-template-columns:repeat(3,1fr);margin:0">
+          <div class="stat"><div class="v" id="score">0</div><div class="l">apples</div></div>
+          <div class="stat"><div class="v" id="steps">0</div><div class="l">steps</div></div>
+          <div class="stat"><div class="v" id="lat">–</div><div class="l">avg ms / move</div></div>
+        </div>
+        <div class="card"><h2>Last decision</h2><div id="thoughts" class="hint">Press play to start.</div></div>
+      </aside>
+    </div>
+  </main>
+  <script type="module" src="snake.js"></script>
+</body>
+</html>

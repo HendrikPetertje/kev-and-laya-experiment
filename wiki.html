@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wiki Race · laya lab</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <h1>Wikipedia race.</h1>
+      <p>Laya starts on one article and has to reach another by clicking links only. On each page it scores every outgoing link with a <code>noul</code> question ("does this lead towards the target?") in batches of 50, then follows the best one it hasn't visited yet.</p>
+    </section>
+    <div class="card" style="margin-bottom:24px">
+      <div class="row" style="align-items:end;flex-wrap:wrap">
+        <label class="field" style="flex:1;min-width:200px">Start article<input id="start" value="Banana" /></label>
+        <label class="field" style="flex:1;min-width:200px">Target article<input id="target" value="Albert Einstein" /></label>
+        <button class="btn" id="random">🎲 Random</button>
+        <button class="btn primary" id="go">Race →</button>
+      </div>
+    </div>
+    <div class="split">
+      <div class="side">
+        <div class="card"><h2>Path <span class="count" id="hops">0</span></h2><div class="path" id="path"><span class="hint">Not started.</span></div></div>
+        <div class="card"><h2>Status</h2><p class="hint" id="status" style="margin:0">Pick two articles and race.</p></div>
+      </div>
+      <div class="card"><h2>Top links on this page</h2><div id="links" class="hint">–</div></div>
+    </div>
+  </main>
+  <script type="module" src="wiki.js"></script>
+</body>
+</html>
