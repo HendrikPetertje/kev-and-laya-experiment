@@ -35,22 +35,25 @@ async function readBody(req) {
   return Buffer.concat(chunks);
 }
 
-/** Backend chosen in the UI (X-Backend header), falling back to LAYA_BASE. Only http(s) origins. */
+/**
+ * Backend chosen in the UI (X-Backend header), falling back to LAYA_BASE. Only http(s).
+ * The path is kept so wrapped deployments work, e.g. https://host/api/laya.
+ */
 function backendFor(req) {
   const raw = req.headers["x-backend"];
   if (!raw) return LAYA_BASE;
   try {
     const u = new URL(raw);
-    return /^https?:$/.test(u.protocol) ? u.origin : null;
+    return /^https?:$/.test(u.protocol) ? u.origin + u.pathname.replace(/\/+$/, "") : null;
   } catch {
     return null;
   }
 }
 
 async function proxy(req, res) {
-  // Only forward the known laya-serve paths.
+  // Only forward the known paths: laya-serve / Kev (v1/systemone) and the hosted wrapper (predict, batch, models).
   const path = new URL(req.url, "http://x").pathname.slice("/api".length);
-  if (!/^\/(health|v1\/systemone(\/batch)?)$/.test(path)) {
+  if (!/^\/(health|models|predict|batch|v1\/systemone(\/batch)?)$/.test(path)) {
     res.writeHead(404).end();
     return;
   }
